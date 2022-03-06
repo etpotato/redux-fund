@@ -11,15 +11,15 @@ const nextTodoId = (todos) => {
 
 export default function todosReducer(state = initialState, action) {
   switch (action.type) {
-    case 'todo/todoAdded':
-      return ([
+    case 'todos/todoAdded':
+      return [
           ...state,
           {
             id: nextTodoId(state),
             text: action.payload,
             completed: false,
           },
-        ]);
+        ];
     case 'todos/todoDeleted':
       return state.filter((todo) => todo.id !== action.payload);
     case 'todos/todoToggled':
