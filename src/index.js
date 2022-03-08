@@ -7,6 +7,9 @@ import App from './App'
 import './api/server'
 
 import store from './store';
+import { fetchTodos }  from './features/todos/todosSlise';
+
+store.dispatch(fetchTodos)
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,9 +19,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
-// log: 'Hi!'
-
-console.log('State after dispatch: ', store.getState())
-// log: {todos: [...], filters: {status, colors}, meaningOfLife: 42}
