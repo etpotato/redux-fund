@@ -1,11 +1,19 @@
 import React from 'react'
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TodoListItem from './TodoListItem'
-
-const selectTodoIDs = (state) => state.todos.map((todo) => todo.id);
+import {selectFilteredTodoIds} from './todosSlise';
 
 const TodoList = () => {
-  const todoIds = useSelector(selectTodoIDs, shallowEqual);
+  const todoIds = useSelector(selectFilteredTodoIds);
+  const loadingStatus = useSelector((state) => state.todos.status);
+
+  if (loadingStatus === 'loading') {
+    return (
+      <div className='todo-list'>
+        <div className='loader' />
+      </div>
+    )
+  }
 
   const renderedListItems = todoIds.map((todoId) => {
     return <TodoListItem key={todoId} id={todoId} />

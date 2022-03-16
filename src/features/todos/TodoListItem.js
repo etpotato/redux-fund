@@ -1,14 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-
 import { ReactComponent as TimesSolid } from './times-solid.svg'
 
+import { selectTodoById } from '../../features/todos/todosSlise'
 import { availableColors, capitalize } from '../filters/colors'
 
-const selectTodoById = (todos, todoId) => todos.find((todo) => todo.id === todoId);
-
 const TodoListItem = ({ id }) => {
-  const { text, completed, color } = useSelector((state) => selectTodoById(state.todos, id))
+  const { text, completed, color } = useSelector((state) => selectTodoById(state.todos.entities, id))
   const dispatch = useDispatch()
 
   const handleCompletedChanged = () => dispatch({type: 'todos/todoToggled', payload: id})
